@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon CV</title>
+  <style>
+    .contact-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .contact-button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-container {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #007BFF;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-container button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bouton principal -->
+  <button class="contact-button" onclick="showForm()">Contacter-moi</button>
+
+  <!-- Formulaire caché -->
+  <div class="form-container" id="contactForm">
+    <input type="email" id="email" placeholder="Votre adresse e-mail" required>
+    <input type="tel" id="phone" placeholder="Votre numéro de téléphone" required>
+    <button onclick="submitForm()">Envoyer</button>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById("contactForm").style.display = "block";
+    }
+
+    function submitForm() {
+      // Tu peux ici faire des vérifications ou envoyer les données si besoin
+      alert("Merci ! Vos informations ont été envoyées.");
+      document.getElementById("contactForm").style.display = "none";
+    }
+  </script>
+
+</body>
+
