@@ -1,53 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Calculatrice - Jeffrey Grimaud</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <script src="../script/script.js"></script>
-    <style>
-        body {
-            background-image: url(../image/fond.jpg);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Calculatrice – Hajar El Abid</title>
+  <link rel="stylesheet" href="../style/style.css">
+  <script src="../script/script.js" defer></script>
+  <style>
+    body {
+      background-image: url(../image/fond.jpg);
+    }
+  </style>
 </head>
 <body>
-    <div class="sommaire">
-        <a href="../index.html" class="diff_page"><button>CV</button></a>
-        <a id="current"><button>Calculatrice</button></a>
-        <a href="fiche_contact.html" class="diff_page"><button>Me contacter</button></a>
-    </div>
-    <div class="calculatrice">
-        <input id="calc-display" type="text" class="input input-bordered w-full text-right text-xl" disabled />
+  <div class="sommaire">
+    <a href="../index.html" class="diff_page">
+      <button>CV</button>
+    </a>
+    <a id="current">
+      <button>Calculatrice</button>
+    </a>
+    <a href="fiche_contact.html" class="diff_page">
+      <button>Me contacter</button>
+    </a>
+  </div>
 
-        <div class="calc-body">
-            <div class="keys-left">
-                <button class="btn nb" onclick="appendValue('7')">7</button>
-                <button class="btn nb" onclick="appendValue('8')">8</button>
-                <button class="btn nb" onclick="appendValue('9')">9</button>
+  <div class="calculatrice">
+    <input
+      id="calc-display"
+      type="text"
+      class="input input-bordered w-full text-right text-xl"
+      disabled
+    />
 
-                <button class="btn nb" onclick="appendValue('4')">4</button>
-                <button class="btn nb" onclick="appendValue('5')">5</button>
-                <button class="btn nb" onclick="appendValue('6')">6</button>
+    <div class="calc-body">
+      <div class="keys-left">
+        <button class="btn nb" onclick="appendValue('7')">7</button>
+        <button class="btn nb" onclick="appendValue('8')">8</button>
+        <button class="btn nb" onclick="appendValue('9')">9</button>
 
-                <button class="btn nb" onclick="appendValue('1')">1</button>
-                <button class="btn nb" onclick="appendValue('2')">2</button>
-                <button class="btn nb" onclick="appendValue('3')">3</button>
+        <button class="btn nb" onclick="appendValue('4')">4</button>
+        <button class="btn nb" onclick="appendValue('5')">5</button>
+        <button class="btn nb" onclick="appendValue('6')">6</button>
 
-                <button class="btn vir" onclick="appendValue('0')">0</button>
-                <button class="btn vir" onclick="appendValue('.')">.</button>
-                <button class="btn-clear" onclick="clearDisplay()">C</button>
-            </div>
+        <button class="btn nb" onclick="appendValue('1')">1</button>
+        <button class="btn nb" onclick="appendValue('2')">2</button>
+        <button class="btn nb" onclick="appendValue('3')">3</button>
 
-       <div class="keys-right">
-                <button class="btn calc" onclick="appendValue('+')">+</button>
-                <button class="btn calc" onclick="appendValue('-')">−</button>
-                <button class="btn calc" onclick="appendValue('*')">×</button>
-                <button class="btn calc" onclick="appendValue('/')">÷</button>
-                <button class="btn result" onclick="calculate()">=</button>
-            </div>
-        </div>
-    </div>
+        <button class="btn vir" onclick="appendValue('0')">0</button>
+        <button class="btn vir" onclick="appendValue('.')">.</button>
+        <button class="btn-clear" onclick="clearDisplay()">C</button>
+      </div> <!-- /keys-left -->
+
+      <div class="keys-right">
+        <button class="btn calc" onclick="appendValue('+')">+</button>
+        <button class="btn calc" onclick="appendValue('-')">−</button>
+        <button class="btn calc" onclick="appendValue('*')">×</button>
+        <button class="btn calc" onclick="appendValue('/')">÷</button>
+        <button class="btn result" onclick="calculate()">=</button>
+      </div> <!-- /keys-right -->
+    </div> <!-- /calc-body -->
+  </div> <!-- /calculatrice -->
 </body>
+</html>
