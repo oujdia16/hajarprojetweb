@@ -1,68 +1,32 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Mon CV</title>
-  <style>
-    .contact-button {
-      background-color: #007BFF;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
+<script>
+  function showForm() {
+    const form = document.getElementById("contactForm");
+    form.style.display = "block";
+
+    // Faire défiler jusqu'au formulaire si besoin
+    form.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function submitForm() {
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (email === "" || phone === "") {
+      alert("Veuillez remplir tous les champs.");
+      return;
     }
 
-    .contact-button:hover {
-      background-color: #0056b3;
-    }
+    // Affiche le message
+    alert("Merci ! Vos informations ont été envoyées.");
 
-    .form-container {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border: 2px solid #007BFF;
-      border-radius: 10px;
-      width: 300px;
-    }
+    // Réinitialise les champs
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
 
-    .form-container input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+    // Cache le formulaire
+    document.getElementById("contactForm").style.display = "none";
 
-    .form-container button {
-      background-color: #28a745;
-      color: white;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .form-container button:hover {
-      background-color: #218838;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Bouton principal -->
-  <button class="contact-button" onclick="showForm()">Contacter-moi</button>
-
-  <!-- Formulaire caché -->
-  <div class="form-container" id="contactForm">
-    <input type="email" id="email" placeholder="Votre adresse e-mail" required>
-    <input type="tel" id="phone" placeholder="Votre numéro de téléphone" required>
-    <button onclick="submitForm()">Envoyer</button>
-  </div>
-
-  <script>
-   
+    // Remonte en haut de la page (vers le CV)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
