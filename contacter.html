@@ -1,32 +1,60 @@
-<script>
-  function showForm() {
-    const form = document.getElementById("contactForm");
-    form.style.display = "block";
-
-    // Faire défiler jusqu'au formulaire si besoin
-    form.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function submitForm() {
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-
-    if (email === "" || phone === "") {
-      alert("Veuillez remplir tous les champs.");
-      return;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacter-moi</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
     }
 
-    // Affiche le message
-    alert("Merci ! Vos informations ont été envoyées.");
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+      border: 2px solid #007BFF;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-    // Réinitialise les champs
-    document.getElementById("email").value = "";
-    document.getElementById("phone").value = "";
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-    // Cache le formulaire
-    document.getElementById("contactForm").style.display = "none";
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-    // Remonte en haut de la page (vers le CV)
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Contactez-moi</h2>
+    <input type="email" placeholder="Votre e-mail" required>
+    <input type="tel" placeholder="Votre numéro de téléphone" required>
+    <button onclick="envoyerEtRetour()">Envoyer</button>
+  </div>
+
+  <script>
+    function envoyerEtRetour() {
+      alert("Merci ! Vos informations ont été envoyées.");
+      window.location.href = "index.html"; // Revenir à la page principale
+    }
+  </script>
+
+</body>
+
