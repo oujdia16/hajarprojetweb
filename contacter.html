@@ -60,10 +60,18 @@
 
   <div class="contact-box">
     <h2>Contactez-moi</h2>
-    <input type="email" placeholder="Votre email" required>
-    <input type="tel" placeholder="Votre numéro" required>
-    <button>Envoyer</button>
+    <form onsubmit="redirectToCV(); return false;">
+      <input type="email" placeholder="Votre email" required>
+      <input type="tel" placeholder="Votre numéro" required>
+      <button type="submit">Envoyer</button>
+    </form>
   </div>
 
+  <script>
+    function redirectToCV() {
+      // Redirection vers la page du CV
+      window.location.href = "cv.html"; // change "cv.html" si ton fichier CV a un autre nom
+    }
+  </script>
+
 </body>
-</html>
