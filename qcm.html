@@ -51,6 +51,7 @@
             ${opt}
           </label>`;
       });
+      div.innerHTML += `<div id=\"feedback-${i}\" class=\"mt-2 font-medium hidden\"></div>`;
       form.appendChild(div);
     });
 
@@ -63,14 +64,23 @@
         const selected = [...document.querySelectorAll(`input[name=\"q${i}\"]:checked`)]
                           .map(cb => parseInt(cb.value));
         const correct = q.correctAnswers;
+        const feedbackDiv = document.getElementById(`feedback-${i}`);
+        feedbackDiv.classList.remove('hidden');
+
         const ok = selected.length === correct.length && selected.every(v => correct.includes(v));
-        if (ok) score++;
+        if (ok) {
+          score++;
+          feedbackDiv.textContent = '✔ Bonne réponse';
+          feedbackDiv.className = 'mt-2 text-green-600 font-medium';
+        } else {
+          feedbackDiv.textContent = "❌ C'est faux";
+          feedbackDiv.className = 'mt-2 text-red-600 font-medium';
+        }
       });
 
       resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
 
       if (score === qcm.length) {
-        bruteBtn.classList.add('hidden');
         setTimeout(() => window.location.href = 'contacter.html', 1500);
       } else {
         bruteBtn.classList.remove('hidden');
@@ -80,5 +90,6 @@
 
 </body>
 </html>
+
 
 
