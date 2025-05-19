@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Mon CV – Hajar El Abid</title>
+  <title>Calculatrice – Hajar El Abid</title>
 </head>
 
 <body class="bg-gray-100 min-h-screen p-6">
@@ -27,70 +27,57 @@
     />
 
     <div class="grid grid-cols-4 gap-2 text-sm">
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
+      <button data-val="7" class="btn">7</button>
+      <button data-val="8" class="btn">8</button>
+      <button data-val="9" class="btn">9</button>
+      <button data-val="+" class="btn font-bold bg-blue-100 hover:bg-blue-200">+</button>
 
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
+      <button data-val="4" class="btn">4</button>
+      <button data-val="5" class="btn">5</button>
+      <button data-val="6" class="btn">6</button>
+      <button data-val="-" class="btn font-bold bg-blue-100 hover:bg-blue-200">−</button>
 
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
+      <button data-val="1" class="btn">1</button>
+      <button data-val="2" class="btn">2</button>
+      <button data-val="3" class="btn">3</button>
+      <button data-val="*" class="btn font-bold bg-blue-100 hover:bg-blue-200">×</button>
 
-      <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
+      <button data-val="0" class="btn col-span-2">0</button>
+      <button data-val="." class="btn">.</button>
+      <button data-val="/" class="btn font-bold bg-blue-100 hover:bg-blue-200">÷</button>
 
-      <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
-      <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
+      <button id="clear" class="btn bg-red-200 hover:bg-red-300 font-bold">C</button>
+      <button id="equal" class="btn col-span-3 bg-green-200 hover:bg-green-300 font-bold">=</button>
     </div>
   </div>
 
-  <!-- Script JS -->
   <script>
     const toggleBtn = document.getElementById('toggleCalc');
     const calcBox = document.getElementById('calcBox');
     const display = document.getElementById('calc-display');
+    const clear = document.getElementById('clear');
+    const equal = document.getElementById('equal');
 
-    // Afficher ou masquer la calculatrice
     toggleBtn.addEventListener('click', () => {
       calcBox.classList.toggle('hidden');
     });
 
-    function appendValue(v) {
-      display.value += v;
-    }
+    // Gérer les boutons
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-val');
+        if (val) display.value += val;
+      });
+    });
 
-    function clearDisplay() {
-      display.value = '';
-    }
-
-    function calculate() {
+    clear.addEventListener('click', () => display.value = '');
+    equal.addEventListener('click', () => {
       try {
         display.value = eval(display.value);
       } catch {
         display.value = 'Erreur';
       }
-    }
-
-    // Attacher les fonctions aux boutons
-    document.querySelectorAll('#calcBox button').forEach(btn => {
-      const value = btn.textContent.trim();
-
-      if (value === 'C') {
-        btn.onclick = clearDisplay;
-      } else if (value === '=') {
-        btn.onclick = calculate;
-      } else {
-        const map = { '×': '*', '÷': '/' };
-        btn.onclick = () => appendValue(map[value] || value);
-      }
     });
   </script>
 </body>
-
+</html>
