@@ -12,7 +12,7 @@
     <h1 class="text-3xl font-bold mb-6 text-center">QCM de Culture Générale</h1>
 
     <form id="quizForm" class="space-y-6">
-      <!-- Les questions seront injectées ici -->
+      <!-- Questions will be dynamically inserted here -->
     </form>
 
     <button id="submitBtn" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
@@ -92,47 +92,35 @@
     e.preventDefault();
     let score = 0;
 
-    qcm.forEach((q, index) => {
-      const selected = [...document.querySelectorAll(`input[name="q${index}"]:checked`)].map(cb => parseInt(cb.value));
-      const correct = q.correctAnswers;
+ qcm.forEach((q, index) => {
+    const selected = [...document.querySelectorAll(`input[name="q${index}"]:checked`)].map(cb => parseInt(cb.value));
+    const correct = q.correctAnswers;
 
-      const isCorrect = selected.length === correct.length &&
-        selected.every(val => correct.includes(val));
+    const isCorrect = selected.length === correct.length &&
+      selected.every(val => correct.includes(val));
 
-      const correctionDiv = document.getElementById(`correction-${index}`);
-      correctionDiv.classList.remove("hidden");
+    const correctionDiv = document.getElementById(`correction-${index}`);
+    correctionDiv.classList.remove("hidden");
 
-      if (isCorrect) {
-        score++;
-        correctionDiv.textContent = "✔ Bonne réponse";
-        correctionDiv.className = 'mt-2 text-green-600 font-medium';
-      } else {
-        const bonnesReponses = q.correctAnswers.map(i => q.options[i]).join(", ");
-        correctionDiv.textContent = `❌ Mauvaise réponse. La bonne réponse était : ${bonnesReponses}`;
-        correctionDiv.className = 'mt-2 text-red-600 font-medium';
-      }
-    });
-
-    const resultDiv = document.getElementById('result');
-    resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
-
-    // Si score = 5 => redirection
-    if (score === qcm.length) {
-      setTimeout(() => {
-        window.location.href = "contactez-moi.html";
-      }, 2000);
+    if (isCorrect) {
+      score++;
+      correctionDiv.textContent = "✔ Bonne réponse";
+      correctionDiv.className = 'mt-2 text-green-600 font-medium';
     } else {
-      // Affiche le bouton "Brute Force" si score < 5
-      if (!document.getElementById('bruteForceBtn')) {
-        const btn = document.createElement('button');
-        btn.id = 'bruteForceBtn';
-        btn.textContent = "Brute Force 🔓";
-        btn.className = "mt-4 bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 block";
-        btn.onclick = () => window.location.href = "contactez-moi.html";
-        resultDiv.appendChild(btn);
-      }
+      const bonnesReponses = q.correctAnswers.map(i => q.options[i]).join(", ");
+      correctionDiv.textContent = `❌ Mauvaise réponse. La bonne réponse était : ${bonnesReponses}`;
+      correctionDiv.className = 'mt-2 text-red-600 font-medium';
     }
   });
+
+  document.getElementById('result').textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
+
+  
+  if (score === qcm.length) {
+    setTimeout(() => {
+      window.location.href = "contactez-moi.html";
+    }, 1500);
+  }
   </script>
 </body>
 
