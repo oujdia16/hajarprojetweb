@@ -11,120 +11,118 @@
   <div class="max-w-3xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center">QCM de Culture Générale</h1>
 
-    <form id="quizForm" class="space-y-6">
-      <!-- Questions will be dynamically inserted here -->
-    </form>
+    <form id="quizForm" class="space-y-6"></form>
 
     <button id="submitBtn" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
       Valider les réponses
     </button>
 
     <div id="result" class="mt-6 text-lg font-semibold"></div>
+
+    <button onclick="window.location.href='contactez-moi.html'" class="mt-6 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
+      Brut Force 🔓
+    </button>
   </div>
 
   <script>
     const qcm = [
-    {
-      question: "Quels sont les continents sur Terre ?",
-      options: ["Europe", "Asie", "Afrique", "Océanie", "Atlantide"],
-      correctAnswers: [0, 1, 2, 3]
-    },
-    {
-      question: "Quels animaux pondent des œufs ?",
-      options: ["Poules", "Chiens", "Serpents", "Poissons"],
-      correctAnswers: [0, 2, 3]
-    },
-    {
-      question: "Lesquels de ces objets sont des instruments de musique ?",
-      options: ["Guitare", "Piano", "Chaise", "Violoncelle"],
-      correctAnswers: [0, 1, 3]
-    },
-    {
-      question: "Quelles planètes font partie du système solaire ?",
-      options: ["Mars", "Pluton", "Alpha Centauri", "Vénus"],
-      correctAnswers: [0, 1, 3]
-    },
-    {
-      question: "Parmi ces personnalités, lesquelles sont françaises ?",
-      options: ["Napoléon Bonaparte", "Albert Einstein", "Victor Hugo", "Leonardo da Vinci"],
-      correctAnswers: [0, 2]
-    }
-  ];
+      {
+        question: "Quels sont les continents sur Terre ?",
+        options: ["Europe", "Asie", "Afrique", "Océanie", "Atlantide"],
+        correctAnswers: [0, 1, 2, 3]
+      },
+      {
+        question: "Quels animaux pondent des œufs ?",
+        options: ["Poules", "Chiens", "Serpents", "Poissons"],
+        correctAnswers: [0, 2, 3]
+      },
+      {
+        question: "Lesquels de ces objets sont des instruments de musique ?",
+        options: ["Guitare", "Piano", "Chaise", "Violoncelle"],
+        correctAnswers: [0, 1, 3]
+      },
+      {
+        question: "Quelles planètes font partie du système solaire ?",
+        options: ["Mars", "Pluton", "Alpha Centauri", "Vénus"],
+        correctAnswers: [0, 1, 3]
+      },
+      {
+        question: "Parmi ces personnalités, lesquelles sont françaises ?",
+        options: ["Napoléon Bonaparte", "Albert Einstein", "Victor Hugo", "Leonardo da Vinci"],
+        correctAnswers: [0, 2]
+      }
+    ];
 
-  const form = document.getElementById('quizForm');
+    const form = document.getElementById('quizForm');
 
-  qcm.forEach((q, index) => {
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'bg-white p-4 rounded shadow';
-    questionDiv.id = `question-${index}`;
+    qcm.forEach((q, index) => {
+      const questionDiv = document.createElement('div');
+      questionDiv.className = 'bg-white p-4 rounded shadow';
+      questionDiv.id = `question-${index}`;
 
-    const questionTitle = document.createElement('p');
-    questionTitle.className = 'font-semibold mb-2';
-    questionTitle.textContent = `${index + 1}. ${q.question}`;
-    questionDiv.appendChild(questionTitle);
+      const questionTitle = document.createElement('p');
+      questionTitle.className = 'font-semibold mb-2';
+      questionTitle.textContent = `${index + 1}. ${q.question}`;
+      questionDiv.appendChild(questionTitle);
 
-    q.options.forEach((opt, i) => {
-      const id = `q${index}_opt${i}`;
-      const label = document.createElement('label');
-      label.className = 'block mb-1';
+      q.options.forEach((opt, i) => {
+        const id = `q${index}_opt${i}`;
+        const label = document.createElement('label');
+        label.className = 'block mb-1';
 
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.name = `q${index}`;
-      checkbox.value = i;
-      checkbox.id = id;
-      checkbox.className = 'mr-2';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = `q${index}`;
+        checkbox.value = i;
+        checkbox.id = id;
+        checkbox.className = 'mr-2';
 
-      label.appendChild(checkbox);
-      label.appendChild(document.createTextNode(opt));
-      questionDiv.appendChild(label);
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(opt));
+        questionDiv.appendChild(label);
+      });
+
+      const correction = document.createElement('div');
+      correction.id = `correction-${index}`;
+      correction.className = 'mt-2 text-red-600 font-medium hidden';
+      questionDiv.appendChild(correction);
+
+      form.appendChild(questionDiv);
     });
 
-    const correction = document.createElement('div');
-    correction.id = `correction-${index}`;
-    correction.className = 'mt-2 text-red-600 font-medium hidden';
-    questionDiv.appendChild(correction);
+    document.getElementById('submitBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      let score = 0;
 
-    form.appendChild(questionDiv);
-  });
+      qcm.forEach((q, index) => {
+        const selected = [...document.querySelectorAll(`input[name="q${index}"]:checked`)].map(cb => parseInt(cb.value));
+        const correct = q.correctAnswers;
 
-  document.getElementById('submitBtn').addEventListener('click', function (e) {
-    e.preventDefault();
-    let score = 0;
+        const isCorrect = selected.length === correct.length &&
+          selected.every(val => correct.includes(val));
 
- qcm.forEach((q, index) => {
-    const selected = [...document.querySelectorAll(`input[name="q${index}"]:checked`)].map(cb => parseInt(cb.value));
-    const correct = q.correctAnswers;
+        const correctionDiv = document.getElementById(`correction-${index}`);
+        correctionDiv.classList.remove("hidden");
 
-    const isCorrect = selected.length === correct.length &&
-      selected.every(val => correct.includes(val));
+        if (isCorrect) {
+          score++;
+          correctionDiv.textContent = "✔ Bonne réponse";
+          correctionDiv.className = 'mt-2 text-green-600 font-medium';
+        } else {
+          const bonnesReponses = q.correctAnswers.map(i => q.options[i]).join(", ");
+          correctionDiv.textContent = `❌ Mauvaise réponse. La bonne réponse était : ${bonnesReponses}`;
+          correctionDiv.className = 'mt-2 text-red-600 font-medium';
+        }
+      });
 
-    const correctionDiv = document.getElementById(`correction-${index}`);
-    correctionDiv.classList.remove("hidden");
+      document.getElementById('result').textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
 
-    if (isCorrect) {
-      score++;
-      correctionDiv.textContent = "✔ Bonne réponse";
-      correctionDiv.className = 'mt-2 text-green-600 font-medium';
-    } else {
-      const bonnesReponses = q.correctAnswers.map(i => q.options[i]).join(", ");
-      correctionDiv.textContent = `❌ Mauvaise réponse. La bonne réponse était : ${bonnesReponses}`;
-      correctionDiv.className = 'mt-2 text-red-600 font-medium';
-    }
-  });
-
-  document.getElementById('result').textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
-
-  
-  if (score === qcm.length) {
-    setTimeout(() => {
-      window.location.href = "contactez-moi.html";
-    }, 1500);
-  }
+      if (score === qcm.length) {
+        setTimeout(() => {
+          window.location.href = "contactez-moi.html";
+        }, 1500);
+      }
+    });
   </script>
 </body>
-
-
-<button onclick="window.location.href='contactez-moi.html'" class="mt-2 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
-  Brut Force 🔓
-</button>
+</html>
