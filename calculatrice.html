@@ -17,4 +17,82 @@
   <!-- Contenu de la calculatrice sera ajouté ici plus tard -->
 
 </body>
-</html>
+
+<!-- Calculatrice intégrée -->
+<div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mb-6 hidden">
+
+  <input
+    id="calc-display"
+    type="text"
+    class="w-full h-12 text-right text-2xl border rounded px-2 mb-4"
+    disabled
+  />
+
+  <div class="grid grid-cols-4 gap-2 text-sm">
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
+    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
+
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
+    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
+
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
+    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
+
+    <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
+    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
+    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
+
+    <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
+    <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
+  </div>
+</div>
+
+<!-- JS de la calculatrice -->
+<script>
+  const toggleBtn = document.getElementById('toggleCalc');
+  const calcBox = document.getElementById('calcBox');
+  const display = document.getElementById('calc-display');
+
+  // Afficher/masquer la calculatrice
+  toggleBtn.addEventListener('click', () => {
+    calcBox.classList.toggle('hidden');
+  });
+
+  // Fonctions principales
+  function appendValue(v) {
+    display.value += v;
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Erreur';
+    }
+  }
+
+  // Gestion dynamique des boutons
+  document.querySelectorAll('#calcBox button').forEach(btn => {
+    const value = btn.textContent.trim();
+
+    if (value === 'C') {
+      btn.onclick = clearDisplay;
+    } else if (value === '=') {
+      btn.onclick = calculate;
+    } else {
+      // Convertir les symboles × et ÷
+      const map = { '×': '*', '÷': '/' };
+      btn.onclick = () => appendValue(map[value] || value);
+    }
+  });
+</script>
