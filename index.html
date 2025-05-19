@@ -8,7 +8,6 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800 font-sans p-6">
-
   <div class="max-w-5xl mx-auto bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
     
     <!-- Colonne gauche -->
@@ -19,14 +18,11 @@
         <p class="text-sm mt-1 italic">Étudiante en Cybersécurité – EPITA</p>
         <div class="mt-4">
           <a href="qcm.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-  Contacter moi
-</a>
-
+            Contacter moi
           </a>
         </div>
       </div>
 
-      <!-- Coordonnées -->
       <div class="mb-6 text-left">
         <h2 class="font-semibold text-lg border-b border-blue-200 pb-1">Coordonnées</h2>
         <p class="mt-2">📍 2 rue Pierre Gaspard, 94400 Vitry-sur-Seine</p>
@@ -35,7 +31,6 @@
         <p>🎂 17/06/2006</p>
       </div>
 
-      <!-- Compétences -->
       <div class="mb-6">
         <h2 class="font-semibold text-lg border-b border-blue-200 pb-1">Compétences techniques</h2>
         <ul class="list-disc list-inside mt-2 space-y-1">
@@ -52,7 +47,6 @@
         </ul>
       </div>
 
-      <!-- Langues -->
       <div>
         <h2 class="font-semibold text-lg border-b border-blue-200 pb-1">Langues</h2>
         <ul class="list-disc list-inside mt-2 space-y-1">
@@ -65,13 +59,11 @@
 
     <!-- Colonne droite -->
     <div class="w-full md:w-2/3 p-6">
-      <!-- Profil -->
       <section class="mb-6">
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Profil</h2>
         <p>Étudiante motivée en cybersécurité à EPITA, avec une forte appétence pour les environnements techniques et la résolution de problèmes. Expérience dans le secteur du retail, orientée relation client et gestion d'équipe. Curieuse et rigoureuse, je suis à la recherche de stages pour développer mes compétences techniques.</p>
       </section>
 
-      <!-- Expériences -->
       <section class="mb-6">
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Expériences professionnelles</h2>
         <ul class="list-disc list-inside space-y-2">
@@ -83,7 +75,6 @@
         </ul>
       </section>
 
-      <!-- Formation -->
       <section class="mb-6">
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Formation</h2>
         <ul class="list-disc list-inside space-y-2">
@@ -93,7 +84,6 @@
         </ul>
       </section>
 
-      <!-- Projets -->
       <section class="mb-6">
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Projets</h2>
         <ul class="list-disc list-inside space-y-2">
@@ -102,7 +92,6 @@
         </ul>
       </section>
 
-      <!-- Centres d’intérêt -->
       <section class="mb-6">
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Centres d’intérêt</h2>
         <ul class="list-disc list-inside space-y-2">
@@ -113,7 +102,6 @@
         </ul>
       </section>
 
-      <!-- Calculatrice -->
       <section>
         <h2 class="text-xl font-semibold text-blue-700 mb-2">Calculatrice</h2>
         <button id="toggleCalc" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -151,7 +139,6 @@
     </div>
   </div>
 
-  <!-- Script JS -->
   <script>
     const toggleBtn = document.getElementById('toggleCalc');
     const calcBox = document.getElementById('calcBox');
@@ -159,12 +146,10 @@
     const clear = document.getElementById('clear');
     const equal = document.getElementById('equal');
 
-    // Toggle calculatrice
     toggleBtn.addEventListener('click', () => {
       calcBox.classList.toggle('hidden');
     });
 
-    // Clic sur bouton
     document.querySelectorAll('.btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const val = btn.getAttribute('data-val');
@@ -172,10 +157,7 @@
       });
     });
 
-    // Effacer
     clear.addEventListener('click', () => display.value = '');
-
-    // Calcul
     equal.addEventListener('click', () => {
       try {
         display.value = eval(display.value);
@@ -184,7 +166,7 @@
       }
     });
   </script>
-
 </body>
+</html>
 
 
