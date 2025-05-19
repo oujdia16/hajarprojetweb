@@ -40,7 +40,6 @@
     const bruteBtn = document.getElementById('bruteForceBtn');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Génération des questions
     qcm.forEach((q, i) => {
       const div = document.createElement('div');
       div.className = 'bg-white p-4 rounded shadow';
@@ -52,30 +51,20 @@
             ${opt}
           </label>`;
       });
-      div.innerHTML += `<div id=\"correction-${i}\" class=\"mt-2 font-medium hidden\"></div>`;
       form.appendChild(div);
     });
 
     submitBtn.addEventListener('click', e => {
       e.preventDefault();
       let score = 0;
+      bruteBtn.classList.add('hidden');
 
       qcm.forEach((q, i) => {
         const selected = [...document.querySelectorAll(`input[name=\"q${i}\"]:checked`)]
                           .map(cb => parseInt(cb.value));
         const correct = q.correctAnswers;
-        const corrDiv = document.getElementById(`correction-${i}`);
-        corrDiv.classList.remove('hidden');
-
         const ok = selected.length === correct.length && selected.every(v => correct.includes(v));
-        if (ok) {
-          score++;
-          corrDiv.textContent = '✔ Bonne réponse';
-          corrDiv.className = 'mt-2 text-green-600 font-medium';
-        } else {
-          corrDiv.textContent = `❌ Mauvaise réponse. Bonne(s): ${correct.map(idx => q.options[idx]).join(', ')}`;
-          corrDiv.className = 'mt-2 text-red-600 font-medium';
-        }
+        if (ok) score++;
       });
 
       resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
@@ -91,4 +80,5 @@
 
 </body>
 </html>
+
 
