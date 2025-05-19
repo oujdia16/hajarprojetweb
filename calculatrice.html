@@ -6,133 +6,92 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Mon CV – Hajar El Abid</title>
 </head>
+
 <body class="bg-gray-100 min-h-screen p-6">
 
+  <!-- Bouton pour afficher la calculatrice -->
   <nav class="mb-6">
     <button id="toggleCalc" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
       Ouvrir la calculatrice
     </button>
   </nav>
 
-  <!-- Contenu de la calculatrice sera ajouté ici plus tard -->
+  <!-- Calculatrice intégrée (cachée au début) -->
+  <div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mb-6 hidden">
 
-</body>
+    <input
+      id="calc-display"
+      type="text"
+      class="w-full h-12 text-right text-2xl border rounded px-2 mb-4"
+      disabled
+    />
 
-<!-- Calculatrice intégrée -->
-<div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mb-6 hidden">
+    <div class="grid grid-cols-4 gap-2 text-sm">
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
+      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
 
-  <input
-    id="calc-display"
-    type="text"
-    class="w-full h-12 text-right text-2xl border rounded px-2 mb-4"
-    disabled
-  />
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
+      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
 
-  <div class="grid grid-cols-4 gap-2 text-sm">
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
-    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
+      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
 
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
-    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
+      <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
+      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
+      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
 
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
-    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
-
-    <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
-    <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
-    <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
-
-    <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
-    <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
+      <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
+      <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
+    </div>
   </div>
-</div>
 
-<!-- JS de la calculatrice -->
-<script>
-  const toggleBtn = document.getElementById('toggleCalc');
-  const calcBox = document.getElementById('calcBox');
-  const display = document.getElementById('calc-display');
+  <!-- Script JS -->
+  <script>
+    const toggleBtn = document.getElementById('toggleCalc');
+    const calcBox = document.getElementById('calcBox');
+    const display = document.getElementById('calc-display');
 
-  // Afficher/masquer la calculatrice
-  toggleBtn.addEventListener('click', () => {
-    calcBox.classList.toggle('hidden');
-  });
+    // Afficher ou masquer la calculatrice
+    toggleBtn.addEventListener('click', () => {
+      calcBox.classList.toggle('hidden');
+    });
 
-  // Fonctions principales
-  function appendValue(v) {
-    display.value += v;
-  }
-
-  function clearDisplay() {
-    display.value = '';
-  }
-
-  function calculate() {
-    try {
-      display.value = eval(display.value);
-    } catch {
-      display.value = 'Erreur';
+    function appendValue(v) {
+      display.value += v;
     }
-  }
 
-  // Gestion dynamique des boutons
-  document.querySelectorAll('#calcBox button').forEach(btn => {
-    const value = btn.textContent.trim();
-
-    if (value === 'C') {
-      btn.onclick = clearDisplay;
-    } else if (value === '=') {
-      btn.onclick = calculate;
-    } else {
-      // Convertir les symboles × et ÷
-      const map = { '×': '*', '÷': '/' };
-      btn.onclick = () => appendValue(map[value] || value);
+    function clearDisplay() {
+      display.value = '';
     }
-  });
-</script>
 
-<script>
-  const toggleBtn = document.getElementById('toggleCalc');
-  const calcBox = document.getElementById('calcBox');
-  const display = document.getElementById('calc-display');
-
-  toggleBtn.addEventListener('click', () => {
-    calcBox.classList.toggle('hidden');
-  });
-
-  function appendValue(v) {
-    display.value += v;
-  }
-
-  function clearDisplay() {
-    display.value = '';
-  }
-
-  function calculate() {
-    try {
-      display.value = eval(display.value);
-    } catch {
-      display.value = 'Erreur';
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Erreur';
+      }
     }
-  }
 
-  // Attacher les événements aux boutons
-  document.querySelectorAll('#calcBox button').forEach(btn => {
-    const value = btn.textContent.trim();
+    // Attacher les fonctions aux boutons
+    document.querySelectorAll('#calcBox button').forEach(btn => {
+      const value = btn.textContent.trim();
 
-    if (value === 'C') {
-      btn.onclick = clearDisplay;
-    } else if (value === '=') {
-      btn.onclick = calculate;
-    } else {
-      const map = { '×': '*', '÷': '/' };
-      btn.onclick = () => appendValue(map[value] || value);
-    }
-  });
-</script>
+      if (value === 'C') {
+        btn.onclick = clearDisplay;
+      } else if (value === '=') {
+        btn.onclick = calculate;
+      } else {
+        const map = { '×': '*', '÷': '/' };
+        btn.onclick = () => appendValue(map[value] || value);
+      }
+    });
+  </script>
+</body>
+</html>
+
