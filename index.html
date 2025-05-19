@@ -137,3 +137,91 @@
 </script>
 </body>
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Calculatrice – Hajar El Abid</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+
+  <!-- Bouton pour afficher la calculatrice -->
+  <nav class="mb-6">
+    <button id="toggleCalc" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      Ouvrir la calculatrice
+    </button>
+  </nav>
+
+  <!-- Boîte calculatrice (cachée au début) -->
+  <div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mb-6 hidden">
+    <!-- Afficheur -->
+    <input
+      id="calc-display"
+      type="text"
+      class="w-full h-12 text-right text-2xl border rounded px-2 mb-4"
+      disabled
+    />
+
+    <!-- Touches -->
+    <div class="grid grid-cols-4 gap-2 text-sm">
+      <button data-val="7" class="btn">7</button>
+      <button data-val="8" class="btn">8</button>
+      <button data-val="9" class="btn">9</button>
+      <button data-val="+" class="btn bg-blue-100 hover:bg-blue-200 font-bold">+</button>
+
+      <button data-val="4" class="btn">4</button>
+      <button data-val="5" class="btn">5</button>
+      <button data-val="6" class="btn">6</button>
+      <button data-val="-" class="btn bg-blue-100 hover:bg-blue-200 font-bold">−</button>
+
+      <button data-val="1" class="btn">1</button>
+      <button data-val="2" class="btn">2</button>
+      <button data-val="3" class="btn">3</button>
+      <button data-val="*" class="btn bg-blue-100 hover:bg-blue-200 font-bold">×</button>
+
+      <button data-val="0" class="btn col-span-2">0</button>
+      <button data-val="." class="btn">.</button>
+      <button data-val="/" class="btn bg-blue-100 hover:bg-blue-200 font-bold">÷</button>
+
+      <button id="clear" class="btn bg-red-200 hover:bg-red-300 font-bold">C</button>
+      <button id="equal" class="btn col-span-3 bg-green-200 hover:bg-green-300 font-bold">=</button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const toggleBtn = document.getElementById('toggleCalc');
+    const calcBox = document.getElementById('calcBox');
+    const display = document.getElementById('calc-display');
+    const clear = document.getElementById('clear');
+    const equal = document.getElementById('equal');
+
+    // Toggle affichage
+    toggleBtn.addEventListener('click', () => {
+      calcBox.classList.toggle('hidden');
+    });
+
+    // Gérer les clics
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-val');
+        if (val) display.value += val;
+      });
+    });
+
+    clear.addEventListener('click', () => display.value = '');
+    equal.addEventListener('click', () => {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Erreur';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
