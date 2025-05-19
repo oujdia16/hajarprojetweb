@@ -44,40 +44,36 @@
     qcm.forEach((q, i) => {
       const div = document.createElement('div');
       div.className = 'bg-white p-4 rounded shadow';
-      div.innerHTML = `<p class="font-semibold mb-2">${i+1}. ${q.question}</p>`;
+      div.innerHTML = `<p class=\"font-semibold mb-2\">${i+1}. ${q.question}</p>`;
       q.options.forEach((opt, j) => {
         div.innerHTML += `
-          <label class="block mb-1">
-            <input type="checkbox" name="q${i}" value="${j}" class="mr-2" />
+          <label class=\"block mb-1\">                
+            <input type=\"checkbox\" name=\"q${i}\" value=\"${j}\" class=\"mr-2\" />
             ${opt}
           </label>`;
       });
-      div.innerHTML += `<div id="correction-${i}" class="mt-2 font-medium hidden"></div>`;
+      div.innerHTML += `<div id=\"correction-${i}\" class=\"mt-2 font-medium hidden\"></div>`;
       form.appendChild(div);
     });
 
     submitBtn.addEventListener('click', e => {
       e.preventDefault();
       let score = 0;
-      bruteBtn.classList.add('hidden');
 
       qcm.forEach((q, i) => {
-        const selected = [...document.querySelectorAll(`input[name="q${i}"]:checked`)]
+        const selected = [...document.querySelectorAll(`input[name=\"q${i}\"]:checked`)]
                           .map(cb => parseInt(cb.value));
         const correct = q.correctAnswers;
         const corrDiv = document.getElementById(`correction-${i}`);
         corrDiv.classList.remove('hidden');
 
-        const ok = selected.length === correct.length &&
-                   selected.every(v => correct.includes(v));
+        const ok = selected.length === correct.length && selected.every(v => correct.includes(v));
         if (ok) {
           score++;
           corrDiv.textContent = '✔ Bonne réponse';
           corrDiv.className = 'mt-2 text-green-600 font-medium';
         } else {
-          corrDiv.textContent = `❌ Mauvaise réponse. Bonne(s): ${
-            correct.map(idx => q.options[idx]).join(', ')
-          }`;
+          corrDiv.textContent = `❌ Mauvaise réponse. Bonne(s): ${correct.map(idx => q.options[idx]).join(', ')}`;
           corrDiv.className = 'mt-2 text-red-600 font-medium';
         }
       });
@@ -85,6 +81,7 @@
       resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
 
       if (score === qcm.length) {
+        bruteBtn.classList.add('hidden');
         setTimeout(() => window.location.href = 'contacter.html', 1500);
       } else {
         bruteBtn.classList.remove('hidden');
@@ -94,3 +91,4 @@
 
 </body>
 </html>
+
