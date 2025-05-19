@@ -1,181 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Sarah EL Abid</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV Sarah EL Abid</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f0f0f0;
+    }
+
+    .contact-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .contact-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
+
 <body>
-           <div class="cv-container">
+
+  <div class="cv-container">
     <!-- Colonne gauche -->
     <div class="left-column">
-    <div class="photo-container">
+      <div class="photo-container">
         <img src="foto.JPG" alt=" Sarah El Abid en photo" class="profile-photo">
-    </div>
+      </div>
 
-    <div class="textbox cadre">
+      <div class="textbox cadre">
         <p>COORDONNÉES</p>
-    </div>
+      </div>
 
-    <div class="left-txt">
-        <p>2  Pierre Gaspard</p>
+      <div class="left-txt">
+        <p>2 Pierre Gaspard</p>
         <p>94400 Vitry-Sur-Seine</p>
         <p>06 28 88 29 22</p>
         <p>sarah.el-abid@epita.fr</p>
         <p>Née le 17/06/2006</p>
+      </div>
+
+      <div class="textbox">
+        <p class="cadre">LANGUE</p>
+      </div>
+
+      <div class="left-txt">
+        <ul>
+          <li>Français → niveau C2</li>
+          <li>Anglais → niveau B2</li>
+          <li>Arabe → niveau C2</li>
+        </ul>
+      </div>
+
+      <div class="textbox">
+        <p class="cadre">COMPÉTENCES</p>
+      </div>
+
+      <div class="left-txt">
+        <ul>
+          <li>communication</li>
+          <li>travail en équipe</li>
+          <li>autonomie</li>
+          <li>adaptabilité</li>
+          <li>curiosité</li>
+          <li>esprit critique</li>
+          <li>langage de programmation: Python, C</li> 
+        </ul>
+      </div>
+
+      <div class="textbox">
+        <p class="cadre">CENTRES D'INTÉRÊT</p>
+      </div>
+
+      <div class="left-txt">
+        <ul>
+          <li>sport : natation, course</li>
+          <li>musique : rap, oriental</li>
+          <li>science : anatomie, physique-chimie</li>
+          <li>voyage : France, Espagne, Italie</li>
+        </ul>
+      </div>
     </div>
-</div>
 
+    <!-- Colonne droite -->
+    <div class="right-column">
+      <div class="textbox">
+        <p class="cadre">FORMATION</p>
+      </div>
+      
+      <div class="destxt">
+        <p>2021-2023 : Baccalauréat Scientifique, spécialités Physique-Chimie et SVT avec mention assez bien</p> 
+        <p>Lycée SAINT-JOSEPH, 94800 Villejuif</p>
+        <p>EPITA : Le Kremlin-Bicêtre ; La Défense</p>
+        <ul>
+          <li>2024-2025 : 1ère année Bachelor cybersécurité à l'EPITA</li>
+          <li>2025-2026 : 2ème année Bachelor cybersécurité</li>
+          <li>2026-2027 : 3ème année Bachelor cybersécurité</li>
+        </ul>
+      </div>
 
-              <div class="textbox">
-    <p class="cadre">LANGUE</p>
-</div>
+      <div class="textbox">
+        <p class="cadre">EXPÉRIENCE</p>
+      </div>
+      
+      <div class="destxt">
+        <p>2020–2021 : Stage d'observation de 2 semaines dans une pharmacie à Ivry-sur-Seine</p>
+        <p>2024 : Job d'été d'un mois chez ZARA à Belle-Épine</p>
+      </div>
 
-<div class="left-txt">
-    <ul>
-        <li>Français -> niveau C2</li>
-        <li>Anglais -> niveau B2</li>
-        <li>Arabe -> niveau C2</li>
-    </ul>
-</div>
+      <!-- Bouton pour ouvrir/fermer la calculatrice -->
+      <button id="toggleCalc" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4">
+        Ouvrir la calculatrice
+      </button>
 
+      <!-- Calculatrice -->
+      <div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mt-4 hidden">
+        <input id="calc-display" type="text" class="w-full h-12 text-right text-2xl border rounded px-2 mb-4" disabled />
 
-                <div class="textbox">
-                    <p class="cadre">COMPETENCE</p>
-                </div>
+        <div class="grid grid-cols-4 gap-2 text-sm">
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
+          <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
 
-                <div class="left-txt">
-                    <ul>
-                        <li>communication</li>
-                        <li>travail en équipe</li>
-                        <li>autonomie</li>
-                        <li>adaptabilité</li>
-                        <li>curiosité</li>
-                        <li>esprit critique</li>
-                        <li>langage de programmation: python,c</li> 
-                    </ul>
-                </div>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
+          <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
 
-                <div class="textbox">
-                    <p class="cadre">CENTRE D'INTERET</p>
-                </div>
-                
-                <div class="left-txt">
-                    <ul>
-                        <li>sport: natation,course</li>
-                        <li>musique: rap,oriental</li>
-                        <li>science: anatomie,physique-chimie</li>
-                        <li>voyage: France, Espagne, Italie</li>
-                    </ul>
-                </div>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
+          <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
+
+          <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
+          <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
+          <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
+
+          <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
+          <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
         </div>
-        <!--Colonne droite-->
+      </div>
 
-        <div class="right-column">
-            <div class="textbox">
-                <p class="cadre">FORMATION</p>
-            </div>
-            
-            <div class="destxt">
-                <p>2021-2023: Baccalauréat Scientifique  specialites physique-chimie et svt aevc mention assez-bien</p> 
-                <p>Lycee SAINT-JOSEPH, 94800 VILLEJUIF</p>
-                <p> EPITA : Le Kremlin - Bicetre ; La Defense</p>
-                <ul>
-                    <li>2024-2025: 1ere année en cycle bachelor specialise en cybersecurite à l'EPITA</li>
-                    <li>2025-2026: 2eme année en cycle bachelor specialise en cybersecuriter à l'EPITA</li>
-                    <li>2026-2027: 3eme année en cycle bachelor specialise en cybersecuriter à l'EPITA</li>
-                </ul>
-            </div>
-        </div>
+      <!-- Bouton vers le QCM -->
+      <button onclick="window.open('qcm.html', '_blank')" 
+              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4">
+        QCM
+      </button>
 
-        <div class="right-column">
-            <div class="textbox">
-                <p class="cadre">EXPERIENCE</p>
-            </div>
-            
-            <div class="destxt">
-                <p>2020–2021: Stage d'observation de 2 semaines dans une pharmacie a Ivry-sur-Seine</p>
-                <p>2024: Job d'été d'un mois a ZARA de Belle-Epine</p>
-            </div>
-
-
-<button id="toggleCalc" class="...">Ouvrir la calculatrice</button>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Calculatrice</title>
-</head>
-<body class="bg-gray-100 p-6">
-
-<button id="toggleCalc" class="bg-blue-600 text-white px-4 py-2 rounded">
-  Ouvrir la calculatrice
-</button>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Mon CV – Hajar El Abid</title>
-</head>
-
-<body class="bg-gray-100 min-h-screen p-6">
-
-  <!-- Bouton pour afficher la calculatrice -->
-  <nav class="mb-6">
-    <button id="toggleCalc" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-      Ouvrir la calculatrice
-    </button>
-  </nav>
-
-  <!-- Calculatrice intégrée (cachée au début) -->
-  <div id="calcBox" class="bg-white rounded-xl shadow-lg w-full max-w-xs p-4 mb-6 hidden">
-
-    <input
-      id="calc-display"
-      type="text"
-      class="w-full h-12 text-right text-2xl border rounded px-2 mb-4"
-      disabled
-    />
-
-    <div class="grid grid-cols-4 gap-2 text-sm">
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">7</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">8</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">9</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">+</button>
-
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">4</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">5</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">6</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">−</button>
-
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">×</button>
-
-      <button class="col-span-2 py-2 bg-gray-200 rounded hover:bg-gray-300">0</button>
-      <button class="py-2 bg-gray-200 rounded hover:bg-gray-300">.</button>
-      <button class="py-2 bg-blue-100 rounded hover:bg-blue-200 font-bold">÷</button>
-
-      <button class="py-2 bg-red-200 rounded hover:bg-red-300 font-bold">C</button>
-      <button class="col-span-3 py-2 bg-green-200 rounded hover:bg-green-300 font-bold">=</button>
+      <!-- Bouton contacter -->
+      <a href="contacter.html" class="contact-button mt-4 inline-block">Contacter-moi</a>
     </div>
   </div>
 
-  <!-- Script JS -->
+  <!-- Script calculatrice -->
   <script>
     const toggleBtn = document.getElementById('toggleCalc');
     const calcBox = document.getElementById('calcBox');
     const display = document.getElementById('calc-display');
 
-    // Afficher ou masquer la calculatrice
     toggleBtn.addEventListener('click', () => {
       calcBox.classList.toggle('hidden');
     });
@@ -196,118 +191,16 @@
       }
     }
 
-    // Attacher les fonctions aux boutons
     document.querySelectorAll('#calcBox button').forEach(btn => {
-      const value = btn.textContent.trim();
-
-      if (value === 'C') {
-        btn.onclick = clearDisplay;
-      } else if (value === '=') {
-        btn.onclick = calculate;
-      } else {
+      const val = btn.textContent.trim();
+      if (val === 'C') btn.onclick = clearDisplay;
+      else if (val === '=') btn.onclick = calculate;
+      else {
         const map = { '×': '*', '÷': '/' };
-        btn.onclick = () => appendValue(map[value] || value);
+        btn.onclick = () => appendValue(map[val] || val);
       }
     });
   </script>
+
 </body>
-
-<script>
-  const toggleBtn = document.getElementById('toggleCalc');
-  const calcBox = document.getElementById('calcBox');
-  const display = document.getElementById('calc-display');
-
-  toggleBtn.addEventListener('click', () => {
-    calcBox.classList.toggle('hidden');
-  });
-
-  function appendValue(v) {
-    display.value += v;
-  }
-
-  function clearDisplay() {
-    display.value = '';
-  }
-
-  function calculate() {
-    try {
-      display.value = eval(display.value);
-    } catch {
-      display.value = 'Erreur';
-    }
-  }
-
-  document.querySelectorAll('#calcBox button').forEach(btn => {
-    const val = btn.textContent.trim();
-    if (val === 'C') btn.onclick = clearDisplay;
-    else if (val === '=') btn.onclick = calculate;
-    else btn.onclick = () => appendValue(val);
-  });
-</script>
-
-
-
-
-<!-- Bouton vers la page QCM -->
-<button onclick="window.open('qcm.html', '_blank')" 
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4">
-  QCM 
-</button>
-
-
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Mon CV</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      background-color: #f0f0f0;
-    }
-
-    .contact-button {
-      display: inline-block;
-      padding: 15px 25px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .contact-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-
-
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Mon CV</title>
-  <style>
-    .contact-button {
-      background-color: #007BFF;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-    }
-
-    .contact-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-
-  <a href="contacter.html" class="contact-button">Contacter-moi</a>
+</html>
