@@ -4,49 +4,12 @@
   <meta charset="UTF-8">
   <title>Contacter-moi</title>
   <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-
-    .form-container {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      border: 2px solid #007BFF;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    textarea {
-      resize: vertical;
-      height: 100px;
-    }
-
-    button {
-      background-color: #28a745;
-      color: white;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background-color: #218838;
-    }
+    body { font-family: sans-serif; padding:20px; background:#f0f0f0; }
+    .form-container { max-width:400px; margin:auto; background:#fff; border:2px solid #007BFF; padding:20px; border-radius:10px; }
+    input, textarea { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; }
+    textarea { resize:vertical; height:100px; }
+    button { background:#28a745; color:#fff; padding:10px; width:100%; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+    button:hover { background:#218838; }
   </style>
 </head>
 <body>
@@ -61,10 +24,10 @@
   </div>
 
   <script>
-    function envoyerEtRetour(event) {
-      event.preventDefault(); // Empêche le rechargement
-      alert("Merci ! Vos informations ont été envoyées.");
-      window.location.href = "index.html";
+    function envoyerEtRetour(e) {
+      e.preventDefault();
+      alert('Merci ! Vos informations ont été envoyées.');
+      window.location.href = 'index.html';
     }
   </script>
 </body>
