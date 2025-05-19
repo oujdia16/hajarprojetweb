@@ -7,22 +7,30 @@
     body {
       font-family: sans-serif;
       padding: 20px;
+      background-color: #f0f0f0;
     }
 
     .form-container {
       max-width: 400px;
       margin: auto;
+      background: white;
       border: 2px solid #007BFF;
       padding: 20px;
       border-radius: 10px;
     }
 
-    input {
+    input, textarea {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
     }
 
     button {
@@ -33,6 +41,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 16px;
     }
 
     button:hover {
@@ -41,20 +50,3 @@
   </style>
 </head>
 <body>
-
-  <div class="form-container">
-    <h2>Contactez-moi</h2>
-    <input type="email" placeholder="Votre e-mail" required>
-    <input type="tel" placeholder="Votre numéro de téléphone" required>
-    <button onclick="envoyerEtRetour()">Envoyer</button>
-  </div>
-
-  <script>
-    function envoyerEtRetour() {
-      alert("Merci ! Vos informations ont été envoyées.");
-      window.location.href = "index.html"; // Revenir à la page principale
-    }
-  </script>
-
-</body>
-
