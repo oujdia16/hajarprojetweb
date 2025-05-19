@@ -96,3 +96,43 @@
     }
   });
 </script>
+
+<script>
+  const toggleBtn = document.getElementById('toggleCalc');
+  const calcBox = document.getElementById('calcBox');
+  const display = document.getElementById('calc-display');
+
+  toggleBtn.addEventListener('click', () => {
+    calcBox.classList.toggle('hidden');
+  });
+
+  function appendValue(v) {
+    display.value += v;
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Erreur';
+    }
+  }
+
+  // Attacher les événements aux boutons
+  document.querySelectorAll('#calcBox button').forEach(btn => {
+    const value = btn.textContent.trim();
+
+    if (value === 'C') {
+      btn.onclick = clearDisplay;
+    } else if (value === '=') {
+      btn.onclick = calculate;
+    } else {
+      const map = { '×': '*', '÷': '/' };
+      btn.onclick = () => appendValue(map[value] || value);
+    }
+  });
+</script>
