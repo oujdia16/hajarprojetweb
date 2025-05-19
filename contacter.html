@@ -50,21 +50,24 @@
   </style>
 </head>
 <body>
-    <div class="form-container">
+  <div class="form-container">
     <h2>Contactez-moi</h2>
-    <input type="text" placeholder="Votre nom" required>
-    <input type="email" placeholder="Votre e-mail" required>
-    <textarea placeholder="Votre message" required></textarea>
-    <button onclick="envoyerEtRetour()">Envoyer</button>
+    <form id="contactForm" onsubmit="envoyerEtRetour(event)">
+      <input type="text" name="nom" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre e-mail" required>
+      <textarea name="message" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
   </div>
 
-      <script>
-    function envoyerEtRetour() {
+  <script>
+    function envoyerEtRetour(event) {
+      event.preventDefault(); // Empêche le rechargement
       alert("Merci ! Vos informations ont été envoyées.");
       window.location.href = "index.html";
     }
   </script>
-
 </body>
+</html>
 
 
