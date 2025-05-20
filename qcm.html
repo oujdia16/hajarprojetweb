@@ -20,12 +20,12 @@
     <div id="result" class="mt-6 text-lg font-semibold"></div>
 
     <button id="bruteForceBtn"
-            onclick="window.location.href='contacter.html'"
             class="mt-6 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 hidden">
       Brut Force 🔓
     </button>
 
-    
+    <div id="bruteStatus" class="mt-4 text-center text-sm text-gray-700 font-mono"></div>
+
     <button id="restartBtn"
             class="mt-4 bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700 hidden">
       Recommencer le QCM 🔄
@@ -44,6 +44,7 @@
     const form = document.getElementById('quizForm');
     const resultDiv = document.getElementById('result');
     const bruteBtn = document.getElementById('bruteForceBtn');
+    const bruteStatus = document.getElementById('bruteStatus');
     const nextBtn = document.getElementById('nextBtn');
     const restartBtn = document.getElementById('restartBtn');
 
@@ -101,14 +102,36 @@
       }
     }
 
-    
     restartBtn.addEventListener('click', () => {
       score = 0;
       currentQuestion = 0;
       resultDiv.textContent = '';
       bruteBtn.classList.add('hidden');
+      bruteStatus.textContent = '';
+      bruteBtn.disabled = false;
+      bruteBtn.classList.remove('opacity-60', 'cursor-not-allowed');
       restartBtn.classList.add('hidden');
       showQuestion(currentQuestion);
+    });
+
+    bruteBtn.addEventListener('click', () => {
+      bruteBtn.disabled = true;
+      bruteBtn.classList.add('opacity-60', 'cursor-not-allowed');
+      bruteStatus.textContent = "Test des combinaisons possibles...";
+
+      let dots = 0;
+      const interval = setInterval(() => {
+        dots = (dots + 1) % 4;
+        bruteStatus.textContent = "Test des combinaisons possibles" + '.'.repeat(dots);
+      }, 400);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        bruteStatus.textContent = "Accès accordé ✅ Redirection...";
+        setTimeout(() => {
+          window.location.href = 'contacter.html';
+        }, 1000);
+      }, 3000);
     });
 
     
