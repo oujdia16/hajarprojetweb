@@ -24,6 +24,12 @@
             class="mt-6 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 hidden">
       Brut Force 🔓
     </button>
+
+    
+    <button id="restartBtn"
+            class="mt-4 bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700 hidden">
+      Recommencer le QCM 🔄
+    </button>
   </div>
 
   <script>
@@ -39,6 +45,7 @@
     const resultDiv = document.getElementById('result');
     const bruteBtn = document.getElementById('bruteForceBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const restartBtn = document.getElementById('restartBtn');
 
     let currentQuestion = 0;
     let score = 0;
@@ -88,12 +95,23 @@
 
       if (score !== qcm.length) {
         bruteBtn.classList.remove('hidden');
+        restartBtn.classList.remove('hidden');
       } else {
         setTimeout(() => window.location.href = 'contacter.html', 1500);
       }
     }
 
+    
+    restartBtn.addEventListener('click', () => {
+      score = 0;
+      currentQuestion = 0;
+      resultDiv.textContent = '';
+      bruteBtn.classList.add('hidden');
+      restartBtn.classList.add('hidden');
+      showQuestion(currentQuestion);
+    });
 
+    
     showQuestion(currentQuestion);
   </script>
 
