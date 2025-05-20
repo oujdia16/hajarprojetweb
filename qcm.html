@@ -13,8 +13,8 @@
 
     <form id="quizForm" class="space-y-6"></form>
 
-    <button id="submitBtn" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-      Valider les réponses
+    <button id="nextBtn" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 hidden">
+      Suivant
     </button>
 
     <div id="result" class="mt-6 text-lg font-semibold"></div>
@@ -38,58 +38,63 @@
     const form = document.getElementById('quizForm');
     const resultDiv = document.getElementById('result');
     const bruteBtn = document.getElementById('bruteForceBtn');
-    const submitBtn = document.getElementById('submitBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-    qcm.forEach((q, i) => {
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion(index) {
+      form.innerHTML = '';
+      const q = qcm[index];
       const div = document.createElement('div');
       div.className = 'bg-white p-4 rounded shadow';
-      div.innerHTML = `<p class=\"font-semibold mb-2\">${i+1}. ${q.question}</p>`;
+      div.innerHTML = `<p class="font-semibold mb-2">${index + 1}. ${q.question}</p>`;
       q.options.forEach((opt, j) => {
         div.innerHTML += `
-          <label class=\"block mb-1\">                
-            <input type=\"checkbox\" name=\"q${i}\" value=\"${j}\" class=\"mr-2\" />
+          <label class="block mb-1">
+            <input type="checkbox" name="q${index}" value="${j}" class="mr-2" />
             ${opt}
           </label>`;
       });
-      div.innerHTML += `<div id=\"feedback-${i}\" class=\"mt-2 font-medium hidden\"></div>`;
       form.appendChild(div);
-    });
+      nextBtn.textContent = (index === qcm.length - 1) ? "Terminer" : "Suivant";
+      nextBtn.classList.remove('hidden');
+    }
 
-    submitBtn.addEventListener('click', e => {
+    function checkAnswer() {
+      const selected = [...document.querySelectorAll(`input[name="q${currentQuestion}"]:checked`)]
+        .map(cb => parseInt(cb.value));
+      const correct = qcm[currentQuestion].correctAnswers;
+      const ok = selected.length === correct.length && selected.every(v => correct.includes(v));
+      if (ok) score++;
+    }
+
+    nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      let score = 0;
-      bruteBtn.classList.add('hidden');
+      checkAnswer();
+      currentQuestion++;
 
-      qcm.forEach((q, i) => {
-        const selected = [...document.querySelectorAll(`input[name=\"q${i}\"]:checked`)]
-                          .map(cb => parseInt(cb.value));
-        const correct = q.correctAnswers;
-        const feedbackDiv = document.getElementById(`feedback-${i}`);
-        feedbackDiv.classList.remove('hidden');
-
-        const ok = selected.length === correct.length && selected.every(v => correct.includes(v));
-        if (ok) {
-          score++;
-          feedbackDiv.textContent = '✔ Bonne réponse';
-          feedbackDiv.className = 'mt-2 text-green-600 font-medium';
-        } else {
-          feedbackDiv.textContent = "❌ C'est faux";
-          feedbackDiv.className = 'mt-2 text-red-600 font-medium';
-        }
-      });
-
-      resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
-
-      if (score === qcm.length) {
-        setTimeout(() => window.location.href = 'contacter.html', 1500);
+      if (currentQuestion < qcm.length) {
+        showQuestion(currentQuestion);
       } else {
-        bruteBtn.classList.remove('hidden');
+        showResult();
       }
     });
+
+    function showResult() {
+      form.innerHTML = '';
+      nextBtn.classList.add('hidden');
+      resultDiv.textContent = `Vous avez ${score} / ${qcm.length} bonnes réponses.`;
+
+      if (score !== qcm.length) {
+        bruteBtn.classList.remove('hidden');
+      } else {
+        setTimeout(() => window.location.href = 'contacter.html', 1500);
+      }
+    }
+
+
+    showQuestion(currentQuestion);
   </script>
 
 </body>
-</html>
-
-
-
